@@ -19,13 +19,18 @@ our %EXPORT_TAGS = (id => [qw( get_package_origin_by_id get_package_version_by_i
                     all => [@EXPORT_OK]
                    );
 
+# default config.
 our %config = (
     pkgdb => "/var/db/pkg/",
     portsdb => "/var/db/ports/"
 );
+
 # handles to databases (e.g. local and remote repo)
 our %handles = ();
 
+
+### local database
+## get
 # package info by name
 sub get_package_origin_by_name ($) {
     my $package = shift;
@@ -106,6 +111,15 @@ sub get_package_options_by_id ($) {
     return undef;
 }
 
+## set/add
+# WARNING: you /MUST/ KNOW WHAT YOU ARE DOING
+# TODO: implement these. 
+###
+
+### remote (repo) databases
+# TODO: implement these.
+###
+
 # handle manipulation
 sub init_local_handle () {
     # connect to the local database.
@@ -129,7 +143,6 @@ sub kill_all_handles () {
     # disconnect all handles.
     $_->disconnect for (values %handles);
 }
-
 
 
 1
