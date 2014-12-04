@@ -5,24 +5,6 @@ use utf8;
 use pkgng qw(:all);
 
 # output stuff
-sub almost_pkginfo($){
-    my $pkg = shift;
-    print "Package Version: ",get_package_version_by_name($pkg),"\n";
-    print "Package Origin : ",get_package_origin_by_name($pkg),"\n";
-    print "Package ID     : ",get_package_id_by_name($pkg),"\n";
-    print "Package Deps   :\n";
-    print "\t",$_,"\n" for get_package_deps_by_name($pkg);
-    print "Package Options:\n";
-    (sub (%){
-            my %opts = @_;
-            for (keys %opts) {
-                print "\t",$_,": ",($opts{$_} ? "on" : "off"),"\n"
-            }
-        }
-    )->(get_package_options_by_name($pkg));
-}
-
-
 my $optionstemplate = <<'TEST';
 # Options for %name%-%version%
 _OPTIONS_READ=%name%-%version%
@@ -55,6 +37,7 @@ sub ports_options_db ($) {
     }
     print $output;
 }
+
 
 
 
