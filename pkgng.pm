@@ -5,19 +5,27 @@ use utf8;
 
 use DBI;
 use Data::Dumper;
-require Exporter; 
+require Exporter;
 our @ISA = qw(Exporter);
 our $VERSION = 0.0.1;
 # our @EXPORT = qw();
-our @EXPORT_OK = qw( get_package_origin_by_name get_package_version_by_name get_package_id_by_name get_package_deps_by_name get_package_options_by_name
-get_package_origin_by_id get_package_version_by_id get_package_name_by_id get_package_deps_by_id get_package_options_by_id 
-init_local_handle init_remote_handle disconnect_handle kill_all_handles 
+our @EXPORT_OK = qw(get_package_origin_by_name get_package_version_by_name
+get_package_id_by_name get_package_deps_by_name get_package_options_by_name
+get_package_origin_by_id get_package_version_by_id get_package_name_by_id
+get_package_deps_by_id get_package_options_by_id init_local_handle
+init_remote_handle disconnect_handle kill_all_handles
 );
-our %EXPORT_TAGS = (id => [qw( get_package_origin_by_id get_package_version_by_id get_package_name_by_id get_package_deps_by_id get_package_options_by_id )],
-                    name => [qw( get_package_origin_by_name get_package_version_by_name get_package_id_by_name get_package_deps_by_name get_package_options_by_name )], 
-                    handles => [qw( init_local_handle init_remote_handle disconnect_handle kill_all_handles )], 
-                    all => [@EXPORT_OK]
-                   );
+our %EXPORT_TAGS = (
+    id => [qw(get_package_origin_by_id get_package_version_by_id 
+              get_package_name_by_id get_package_deps_by_id 
+              get_package_options_by_id )],
+    name => [qw(get_package_origin_by_name get_package_version_by_name 
+                get_package_id_by_name get_package_deps_by_name
+                get_package_options_by_name )],
+    handles => [qw(init_local_handle init_remote_handle disconnect_handle 
+                   kill_all_handles )],
+    all => [@EXPORT_OK]
+);
 
 # default config.
 our %config = (
@@ -27,7 +35,6 @@ our %config = (
 
 # handles to databases (e.g. local and remote repo)
 our %handles = ();
-
 
 ### local database
 ## get
@@ -113,7 +120,7 @@ sub get_package_options_by_id ($) {
 
 ## set/add
 # WARNING: you /MUST/ KNOW WHAT YOU ARE DOING
-# TODO: implement these. 
+# TODO: implement these.
 ###
 
 ### remote (repo) databases
